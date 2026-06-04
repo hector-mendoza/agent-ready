@@ -23,11 +23,11 @@ export function validate(config: AgentReadyConfig): void {
   } else {
     try {
       new URL(config.site.baseUrl)
+      if (config.site.baseUrl.endsWith('/')) {
+        issues.push('site.baseUrl must not have a trailing slash')
+      }
     } catch {
       issues.push(`site.baseUrl must be a valid URL, got "${config.site.baseUrl}"`)
-    }
-    if (config.site.baseUrl.endsWith('/')) {
-      issues.push('site.baseUrl must not have a trailing slash')
     }
   }
 

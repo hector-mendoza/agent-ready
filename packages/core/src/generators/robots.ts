@@ -30,7 +30,7 @@ export function generateRobots(config: AgentReadyConfig): GeneratedFile[] {
 
   sections.push(
     [
-      '# Content-Signal directives (Cloudflare)',
+      '# Content-Signal directives (for isitagentready.com scoring)',
       `Content-Signal: ai-train=${bots.aiTrain === true ? 'allow' : 'deny'}`,
       `Content-Signal: ai-input=${bots.aiInput === true ? 'allow' : 'deny'}`,
       `Content-Signal: search=${bots.search === false ? 'deny' : 'allow'}`,
