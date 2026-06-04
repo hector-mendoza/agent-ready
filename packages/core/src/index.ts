@@ -2,3 +2,4 @@ export type { AgentReadyConfig, GeneratedFile, MCPServerCardOptions, APICatalogO
 export { defineConfig } from './config'
 export { validate, AgentReadyValidationError } from './validate'
 export { generateRobots } from './generators/robots'
+export { generateLlmsTxt } from './generators/llms-txt'
