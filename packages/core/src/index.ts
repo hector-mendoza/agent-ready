@@ -1,6 +1,7 @@
 export type { AgentReadyConfig, GeneratedFile, MCPServerCardOptions, APICatalogOptions } from './config'
 export { defineConfig } from './config'
 export { validate, AgentReadyValidationError } from './validate'
+export { generateAll } from './generators/generate-all'
 export { generateRobots } from './generators/robots'
 export { generateLlmsTxt } from './generators/llms-txt'
 export { generateSitemap } from './generators/sitemap'
