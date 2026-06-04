@@ -19,17 +19,21 @@ function getContentType(pathname: string): string {
 export function agentReadyMiddleware(config: AgentReadyConfig) {
   return function middleware(request: NextRequest): NextResponse {
     const pathname = request.nextUrl.pathname
-    const today = new Date().toISOString().split('T')[0]
-    const files = generateAll(config, { date: today })
-    const file = files.find((f) => `/${f.path}` === pathname)
+    try {
+      const today = new Date().toISOString().split('T')[0]
+      const files = generateAll(config, { date: today })
+      const file = files.find((f) => `/${f.path}` === pathname)
 
-    if (!file) return NextResponse.next()
+      if (!file) return NextResponse.next()
 
-    return new NextResponse(file.content, {
-      headers: {
-        'Content-Type': getContentType(pathname),
-        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
-      },
-    })
+      return new NextResponse(file.content, {
+        headers: {
+          'Content-Type': getContentType(pathname),
+          'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+        },
+      })
+    } catch {
+      return NextResponse.next()
+    }
   }
 }

@@ -90,6 +90,12 @@ describe('agentReadyMiddleware', () => {
     it('returns 200 for /.well-known/api-catalog', () => {
       expect(middleware(req('/.well-known/api-catalog')).status).toBe(200)
     })
+
+    it('/.well-known/api-catalog has Content-Type application/json', () => {
+      expect(
+        middleware(req('/.well-known/api-catalog')).headers.get('content-type')
+      ).toContain('application/json')
+    })
   })
 
   describe('cache headers', () => {
@@ -126,6 +132,15 @@ describe('agentReadyMiddleware', () => {
         site: { name: 'X', description: 'X', baseUrl: 'https://example.com' },
       })
       const res = limited(req('/llms-full.txt'))
+      expect(res.headers.get('content-type')).toBeNull()
+    })
+
+    it('passes through /llms.txt when llmsTxt: false', () => {
+      const limited = agentReadyMiddleware({
+        site: { name: 'X', description: 'X', baseUrl: 'https://example.com' },
+        content: { llmsTxt: false },
+      })
+      const res = limited(req('/llms.txt'))
       expect(res.headers.get('content-type')).toBeNull()
     })
   })

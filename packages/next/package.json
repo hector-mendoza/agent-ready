@@ -1,6 +1,8 @@
 {
   "name": "@agent-ready/next",
   "version": "0.1.0",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
