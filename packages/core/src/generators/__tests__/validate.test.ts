@@ -45,6 +45,12 @@ describe('validate', () => {
     ).toThrow(AgentReadyValidationError)
   })
 
+  it('throws when apiCatalog options has missing apis property', () => {
+    expect(() =>
+      validate({ ...valid, protocol: { apiCatalog: {} as any } })
+    ).toThrow(AgentReadyValidationError)
+  })
+
   it('error message lists all issues', () => {
     try {
       validate({ site: { name: '', description: '', baseUrl: '' } })

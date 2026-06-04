@@ -34,7 +34,7 @@ export function validate(config: AgentReadyConfig): void {
   if (
     config.protocol?.apiCatalog &&
     typeof config.protocol.apiCatalog === 'object' &&
-    config.protocol.apiCatalog.apis.length === 0
+    (config.protocol.apiCatalog.apis ?? []).length === 0
   ) {
     issues.push('protocol.apiCatalog.apis must not be empty when providing an options object')
   }
