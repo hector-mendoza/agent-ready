@@ -44,11 +44,11 @@ describe('runInit', () => {
     expect(existsSync(join(dir, 'middleware.ts'))).toBe(true)
   })
 
-  it('middleware.ts imports agentReadyMiddleware and AGENT_READY_MATCHER', async () => {
+  it('middleware.ts imports withAgentReady and AGENT_READY_MATCHER', async () => {
     const dir = makeTmpDir(); dirs.push(dir)
     await runInit(dir)
     const content = readFileSync(join(dir, 'middleware.ts'), 'utf-8')
-    expect(content).toContain('agentReadyMiddleware')
+    expect(content).toContain('withAgentReady')
     expect(content).toContain('AGENT_READY_MATCHER')
   })
 
@@ -66,5 +66,33 @@ describe('runInit', () => {
     writeFileSync(mwPath, 'existing middleware', 'utf-8')
     await runInit(dir)
     expect(readFileSync(mwPath, 'utf-8')).toBe('existing middleware')
+  })
+
+  it('--force overwrites existing agent-ready.config.ts', async () => {
+    const dir = makeTmpDir(); dirs.push(dir)
+    const configPath = join(dir, 'agent-ready.config.ts')
+    writeFileSync(configPath, 'existing content', 'utf-8')
+    await runInit(dir, true)
+    const content = readFileSync(configPath, 'utf-8')
+    expect(content).not.toBe('existing content')
+    expect(content).toContain('defineConfig')
+  })
+
+  it('--force overwrites existing middleware.ts', async () => {
+    const dir = makeTmpDir(); dirs.push(dir)
+    const mwPath = join(dir, 'middleware.ts')
+    writeFileSync(mwPath, 'existing middleware', 'utf-8')
+    await runInit(dir, true)
+    const content = readFileSync(mwPath, 'utf-8')
+    expect(content).not.toBe('existing middleware')
+    expect(content).toContain('withAgentReady')
+  })
+
+  it('generated middleware.ts uses withAgentReady', async () => {
+    const dir = makeTmpDir(); dirs.push(dir)
+    await runInit(dir)
+    const content = readFileSync(join(dir, 'middleware.ts'), 'utf-8')
+    expect(content).toContain('withAgentReady')
+    expect(content).not.toContain('agentReadyMiddleware(agentConfig)')
   })
 })

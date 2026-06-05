@@ -21,31 +21,31 @@ export default defineConfig({
 })
 `
 
-const MIDDLEWARE_CONTENT = `import { agentReadyMiddleware, AGENT_READY_MATCHER } from '@agent-ready/next'
+const MIDDLEWARE_CONTENT = `import { withAgentReady, AGENT_READY_MATCHER } from '@agent-ready/next'
 import agentConfig from './agent-ready.config'
 
-export default agentReadyMiddleware(agentConfig)
+export default withAgentReady(agentConfig)
 export const config = { matcher: AGENT_READY_MATCHER }
 `
 
-const MIDDLEWARE_SNIPPET = `  import { agentReadyMiddleware, AGENT_READY_MATCHER } from '@agent-ready/next'
+const MIDDLEWARE_SNIPPET = `  import { withAgentReady, AGENT_READY_MATCHER } from '@agent-ready/next'
   import agentConfig from './agent-ready.config'
 
-  export default agentReadyMiddleware(agentConfig)
+  export default withAgentReady(agentConfig)
   export const config = { matcher: AGENT_READY_MATCHER }`
 
-export async function runInit(cwd: string = process.cwd()): Promise<void> {
+export async function runInit(cwd: string = process.cwd(), force = false): Promise<void> {
   const configPath = join(cwd, 'agent-ready.config.ts')
   const middlewarePath = join(cwd, 'middleware.ts')
 
-  if (existsSync(configPath)) {
+  if (!force && existsSync(configPath)) {
     warn('agent-ready.config.ts already exists, skipping')
   } else {
     writeFileSync(configPath, CONFIG_CONTENT, 'utf-8')
     pass('Created agent-ready.config.ts')
   }
 
-  if (existsSync(middlewarePath)) {
+  if (!force && existsSync(middlewarePath)) {
     warn('middleware.ts already exists. Add the following to it manually:\n')
     info(MIDDLEWARE_SNIPPET)
   } else {
