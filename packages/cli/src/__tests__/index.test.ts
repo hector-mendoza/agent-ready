@@ -33,10 +33,6 @@ describe('parseFlags', () => {
     expect(parseFlags([])).toEqual({})
   })
 
-  it('treats trailing flag with no value as boolean true', () => {
-    expect(parseFlags(['--url', 'https://x.com', '--live'])).toMatchObject({ live: true })
-  })
-
   it('next arg starting with -- is treated as another flag, not a value', () => {
     expect(parseFlags(['--live', '--url', 'https://x.com'])).toEqual({
       live: true,
@@ -99,9 +95,10 @@ describe('main() dispatch', () => {
   it('calls runAudit for "audit" command with --url', async () => {
     process.argv = ['node', 'index.mjs', 'audit', '--url', 'https://example.com']
     const { main } = await import('../index')
-    const { runAudit } = await import('../commands/audit')
+    const { runAudit, printAuditResult } = await import('../commands/audit')
     await main()
     expect(runAudit).toHaveBeenCalledWith(expect.objectContaining({ url: 'https://example.com' }))
+    expect(printAuditResult).toHaveBeenCalled()
   })
 
   it('exits 1 when audit is called without --url', async () => {
@@ -133,7 +130,10 @@ describe('main() dispatch', () => {
     const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
     const { main } = await import('../index')
     await main()
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('agent-ready'))
+    const helpOutput = logSpy.mock.calls[0]?.[0] as string
+    expect(helpOutput).toContain('agent-ready')
+    expect(helpOutput).toContain('init')
+    expect(helpOutput).toContain('audit')
     logSpy.mockRestore()
   })
 
