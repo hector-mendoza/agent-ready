@@ -45,6 +45,9 @@ export function withAgentReady(
   const inner = agentReadyMiddleware(config)
   return function middleware(request: NextRequest): NextResponse | Promise<NextResponse> {
     const res = inner(request)
+    // Invariant: agentReadyMiddleware sets Content-Type for every matched path and
+    // never sets it for unmatched paths (NextResponse.next() carries no Content-Type).
+    // This is the sentinel that distinguishes "we served this" from "pass through".
     if (res.headers.get('content-type') !== null) {
       return res
     }

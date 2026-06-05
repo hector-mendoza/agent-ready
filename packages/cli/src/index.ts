@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url'
+import packageJson from '../package.json' with { type: 'json' }
 import { runInit } from './commands/init.js'
 import { runAudit, printAuditResult, printAuditGroups } from './commands/audit.js'
 import { runLiveAudit, printLiveAuditGroups } from './commands/live-audit.js'
@@ -49,7 +50,7 @@ function printHelp(): void {
 }
 
 function printVersion(): void {
-  console.log('0.1.0')
+  console.log(packageJson.version)
 }
 
 export async function main(): Promise<void> {

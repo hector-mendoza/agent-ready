@@ -112,7 +112,7 @@ describe('main() dispatch', () => {
     const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
     const { main } = await import('../index')
     await main()
-    expect(logSpy).toHaveBeenCalledWith('0.1.0')
+    expect(logSpy).toHaveBeenCalledWith(expect.stringMatching(/^\d+\.\d+\.\d+/))
     logSpy.mockRestore()
   })
 
@@ -121,7 +121,7 @@ describe('main() dispatch', () => {
     const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
     const { main } = await import('../index')
     await main()
-    expect(logSpy).toHaveBeenCalledWith('0.1.0')
+    expect(logSpy).toHaveBeenCalledWith(expect.stringMatching(/^\d+\.\d+\.\d+/))
     logSpy.mockRestore()
   })
 
