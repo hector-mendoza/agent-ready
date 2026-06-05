@@ -53,9 +53,7 @@ export async function runAudit(flags: {
   return { checks, passed, total: checks.length }
 }
 
-export function printAuditResult(url: string, result: AuditResult): void {
-  info(`\nagent-ready audit — ${url}\n`)
-
+export function printAuditGroups(result: AuditResult): void {
   const groups = [
     { name: 'robots.txt', checks: result.checks.slice(0, 5) },
     { name: 'llms.txt', checks: result.checks.slice(5, 7) },
@@ -71,7 +69,11 @@ export function printAuditResult(url: string, result: AuditResult): void {
     }
     info('')
   }
+}
 
+export function printAuditResult(url: string, result: AuditResult): void {
+  info(`\nagent-ready audit — ${url}\n`)
+  printAuditGroups(result)
   const allPassed = result.passed === result.total
   info(`Score: ${result.passed}/${result.total} checks passed ${allPassed ? '✅' : '❌'}`)
 }
