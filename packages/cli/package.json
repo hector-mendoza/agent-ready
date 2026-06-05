@@ -2,6 +2,17 @@
   "name": "@agent-ready/cli",
   "version": "0.1.0",
   "type": "module",
+  "license": "MIT",
+  "author": "Hector Mendoza <hec1702@gmail.com>",
+  "keywords": ["agent-ready", "ai", "llms", "robots.txt", "isitagentready", "cli", "audit", "scaffold"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hec1702/agent-ready"
+  },
+  "homepage": "https://github.com/hec1702/agent-ready#readme",
+  "bugs": {
+    "url": "https://github.com/hec1702/agent-ready/issues"
+  },
   "bin": {
     "agent-ready": "./dist/index.mjs"
   },
@@ -18,5 +29,8 @@
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
     "vitest": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
