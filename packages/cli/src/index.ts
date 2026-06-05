@@ -71,9 +71,9 @@ export async function main(): Promise<void> {
         process.exit(1)
       }
       const isLive = flags['live'] === true
-      const localResult = await runAudit(
-        flags as { url: string; name?: string; description?: string },
-      )
+      const name = typeof flags['name'] === 'string' ? flags['name'] : undefined
+      const description = typeof flags['description'] === 'string' ? flags['description'] : undefined
+      const localResult = await runAudit({ url, name, description })
 
       if (isLive) {
         info(`\nagent-ready audit — ${url}\n`)

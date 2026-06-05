@@ -53,11 +53,15 @@ export async function runAudit(flags: {
   return { checks, passed, total: checks.length }
 }
 
+const ROBOTS_CHECK_COUNT = 5
+const LLMS_CHECK_COUNT = 2
+// SITEMAP_CHECK_COUNT is implicitly the remainder
+
 export function printAuditGroups(result: AuditResult): void {
   const groups = [
-    { name: 'robots.txt', checks: result.checks.slice(0, 5) },
-    { name: 'llms.txt', checks: result.checks.slice(5, 7) },
-    { name: 'sitemap.xml', checks: result.checks.slice(7, 10) },
+    { name: 'robots.txt', checks: result.checks.slice(0, ROBOTS_CHECK_COUNT) },
+    { name: 'llms.txt', checks: result.checks.slice(ROBOTS_CHECK_COUNT, ROBOTS_CHECK_COUNT + LLMS_CHECK_COUNT) },
+    { name: 'sitemap.xml', checks: result.checks.slice(ROBOTS_CHECK_COUNT + LLMS_CHECK_COUNT) },
   ]
 
   for (const group of groups) {
