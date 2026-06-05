@@ -1,6 +1,6 @@
 import { writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { warn, info } from '../output'
+import { pass, warn, info } from '../output'
 
 const CONFIG_CONTENT = `import { defineConfig } from '@agent-ready/core'
 
@@ -42,7 +42,7 @@ export async function runInit(cwd: string = process.cwd()): Promise<void> {
     warn('agent-ready.config.ts already exists, skipping')
   } else {
     writeFileSync(configPath, CONFIG_CONTENT, 'utf-8')
-    info('✅ Created agent-ready.config.ts')
+    pass('Created agent-ready.config.ts')
   }
 
   if (existsSync(middlewarePath)) {
@@ -50,9 +50,8 @@ export async function runInit(cwd: string = process.cwd()): Promise<void> {
     info(MIDDLEWARE_SNIPPET)
   } else {
     writeFileSync(middlewarePath, MIDDLEWARE_CONTENT, 'utf-8')
-    info('✅ Created middleware.ts')
+    pass('Created middleware.ts')
   }
 
-  info('\nDone! Edit agent-ready.config.ts to match your site, then run:')
-  info('  agent-ready audit --url https://yoursite.com')
+  info('\n✅ Done! Edit agent-ready.config.ts to match your site, then run agent-ready audit.')
 }
