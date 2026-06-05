@@ -1,1 +1,1 @@
-export { agentReadyMiddleware, AGENT_READY_MATCHER } from './middleware'
+export { agentReadyMiddleware, withAgentReady, AGENT_READY_MATCHER } from './middleware'

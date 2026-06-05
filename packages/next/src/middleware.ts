@@ -37,3 +37,17 @@ export function agentReadyMiddleware(config: AgentReadyConfig) {
     }
   }
 }
+
+export function withAgentReady(
+  config: AgentReadyConfig,
+  next?: (request: NextRequest) => NextResponse | Promise<NextResponse>,
+): (request: NextRequest) => NextResponse | Promise<NextResponse> {
+  const inner = agentReadyMiddleware(config)
+  return function middleware(request: NextRequest): NextResponse | Promise<NextResponse> {
+    const res = inner(request)
+    if (res.headers.get('content-type') !== null) {
+      return res
+    }
+    return next ? next(request) : NextResponse.next()
+  }
+}

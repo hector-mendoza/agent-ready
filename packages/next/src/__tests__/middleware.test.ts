@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { NextRequest } from 'next/server'
-import { agentReadyMiddleware, AGENT_READY_MATCHER } from '../middleware'
+import { describe, it, expect, vi } from 'vitest'
+import { NextRequest, NextResponse } from 'next/server'
+import { agentReadyMiddleware, withAgentReady, AGENT_READY_MATCHER } from '../middleware'
 import type { AgentReadyConfig } from '@agent-ready/core'
 
 const config: AgentReadyConfig = {
@@ -165,5 +165,36 @@ describe('agentReadyMiddleware', () => {
     it('contains a /.well-known pattern', () => {
       expect(AGENT_READY_MATCHER.some((m) => m.includes('.well-known'))).toBe(true)
     })
+  })
+})
+
+describe('withAgentReady', () => {
+  it('serves matched paths and does NOT call next', () => {
+    const nextFn = vi.fn().mockReturnValue(new NextResponse('next content'))
+    const mw = withAgentReady(config, nextFn)
+    const res = mw(req('/robots.txt'))
+    expect(res.headers.get('content-type')).toContain('text/plain')
+    expect(nextFn).not.toHaveBeenCalled()
+  })
+
+  it('calls next for unmatched paths', () => {
+    const nextFn = vi.fn().mockReturnValue(new NextResponse('next content'))
+    const mw = withAgentReady(config, nextFn)
+    mw(req('/about'))
+    expect(nextFn).toHaveBeenCalledWith(expect.objectContaining({ nextUrl: expect.anything() }))
+  })
+
+  it('returns NextResponse.next() when no next fn provided and path unmatched', () => {
+    const mw = withAgentReady(config)
+    const res = mw(req('/about'))
+    expect(res.headers.get('content-type')).toBeNull()
+  })
+
+  it('works with async next function', async () => {
+    const nextFn = vi.fn().mockResolvedValue(new NextResponse('async content'))
+    const mw = withAgentReady(config, nextFn)
+    const res = await mw(req('/about'))
+    expect(nextFn).toHaveBeenCalled()
+    expect(await res.text()).toBe('async content')
   })
 })
