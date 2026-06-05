@@ -106,6 +106,13 @@ describe('runLiveAudit', () => {
       globalThis.fetch = vi.fn().mockRejectedValue(new Error('ECONNREFUSED')) as unknown as typeof fetch
       await expect(runLiveAudit(BASE_URL)).resolves.not.toThrow()
     })
+
+    it('includes error message in label when endpoint throws', async () => {
+      globalThis.fetch = vi.fn().mockRejectedValue(new Error('ECONNREFUSED')) as unknown as typeof fetch
+      const result = await runLiveAudit(BASE_URL)
+      const robotsStatusCheck = result.checks[0]
+      expect(robotsStatusCheck.label).toContain('ECONNREFUSED')
+    })
   })
 
   describe('return shape', () => {
