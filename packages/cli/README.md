@@ -1,13 +1,13 @@
-# @agent-ready/cli
+# @is-agent-ready/cli
 
 CLI for scaffolding and auditing AI agent readiness in Next.js projects.
 
 ## Install
 
 ```bash
-npm install -g @agent-ready/cli
+npm install -g @is-agent-ready/cli
 # or use without installing:
-npx @agent-ready/cli
+npx @is-agent-ready/cli
 ```
 
 ## Commands

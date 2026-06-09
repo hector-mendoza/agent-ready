@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateAll } from '@agent-ready/core'
-import type { AgentReadyConfig } from '@agent-ready/core'
+import { generateAll } from '@is-agent-ready/core'
+import type { AgentReadyConfig } from '@is-agent-ready/core'
 
 export const AGENT_READY_MATCHER = [
   '/robots.txt',

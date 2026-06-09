@@ -1,17 +1,17 @@
-# @agent-ready/core
+# @is-agent-ready/core
 
 Pure generator functions that turn an `AgentReadyConfig` into agent-readiness files. Zero runtime dependencies. No I/O — all generators return `GeneratedFile[]`.
 
 ## Install
 
 ```bash
-npm install @agent-ready/core
+npm install @is-agent-ready/core
 ```
 
 ## Config
 
 ```ts
-import { defineConfig } from '@agent-ready/core'
+import { defineConfig } from '@is-agent-ready/core'
 
 export default defineConfig({
   site: {
@@ -53,7 +53,7 @@ export default defineConfig({
 ## API
 
 ```ts
-import { generateAll, generateRobots, generateLlmsTxt, generateSitemap } from '@agent-ready/core'
+import { generateAll, generateRobots, generateLlmsTxt, generateSitemap } from '@is-agent-ready/core'
 
 // Generate all files at once
 const files = generateAll(config)

@@ -1,5 +1,5 @@
-import { generateRobots, generateLlmsTxt, generateSitemap } from '@agent-ready/core'
-import type { AgentReadyConfig } from '@agent-ready/core'
+import { generateRobots, generateLlmsTxt, generateSitemap } from '@is-agent-ready/core'
+import type { AgentReadyConfig } from '@is-agent-ready/core'
 import { pass, fail, info } from '../output'
 
 export interface CheckResult {

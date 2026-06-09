@@ -8,14 +8,14 @@ Make your Next.js app pass [isitagentready.com](https://isitagentready.com) chec
 
 | Package | Description |
 |---|---|
-| [`@agent-ready/core`](packages/core) | Pure generator functions — config → files |
-| [`@agent-ready/next`](packages/next) | Next.js App Router middleware |
-| [`@agent-ready/cli`](packages/cli) | `agent-ready init` and `agent-ready audit` CLI |
+| [`@is-agent-ready/core`](packages/core) | Pure generator functions — config → files |
+| [`@is-agent-ready/next`](packages/next) | Next.js App Router middleware |
+| [`@is-agent-ready/cli`](packages/cli) | `agent-ready init` and `agent-ready audit` CLI |
 
 ## Quick Start (Next.js)
 
 ```bash
-npx @agent-ready/cli init
+npx @is-agent-ready/cli init
 ```
 
 Then edit `agent-ready.config.ts` and you're done. Your site will serve all agent-readiness files dynamically — no static files, no build step.

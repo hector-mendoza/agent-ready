@@ -26,7 +26,7 @@ describe('runInit', () => {
     const dir = makeTmpDir(); dirs.push(dir)
     await runInit(dir)
     const content = readFileSync(join(dir, 'agent-ready.config.ts'), 'utf-8')
-    expect(content).toContain("from '@agent-ready/core'")
+    expect(content).toContain("from '@is-agent-ready/core'")
     expect(content).toContain('defineConfig')
   })
 

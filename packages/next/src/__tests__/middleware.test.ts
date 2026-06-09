@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { NextRequest, NextResponse } from 'next/server'
 import { agentReadyMiddleware, withAgentReady, AGENT_READY_MATCHER } from '../middleware'
-import type { AgentReadyConfig } from '@agent-ready/core'
+import type { AgentReadyConfig } from '@is-agent-ready/core'
 
 const config: AgentReadyConfig = {
   site: { name: 'Test Site', description: 'A test site', baseUrl: 'https://example.com' },

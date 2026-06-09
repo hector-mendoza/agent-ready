@@ -1,12 +1,21 @@
 {
-  "name": "@agent-ready/next",
-  "version": "0.1.0",
+  "name": "@is-agent-ready/next",
+  "version": "0.2.0",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "type": "module",
   "license": "MIT",
   "author": "Hector Mendoza <hec1702@gmail.com>",
-  "keywords": ["agent-ready", "ai", "llms", "robots.txt", "isitagentready", "nextjs", "middleware", "app-router"],
+  "keywords": [
+    "agent-ready",
+    "ai",
+    "llms",
+    "robots.txt",
+    "isitagentready",
+    "nextjs",
+    "middleware",
+    "app-router"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/hec1702/agent-ready"
@@ -22,14 +31,16 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@agent-ready/core": "workspace:*"
+    "@is-agent-ready/core": "workspace:*"
   },
   "peerDependencies": {
     "next": ">=14.0.0"

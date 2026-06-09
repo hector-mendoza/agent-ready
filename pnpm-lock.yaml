@@ -14,7 +14,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@agent-ready/core':
+      '@is-agent-ready/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -42,7 +42,7 @@ importers:
 
   packages/next:
     dependencies:
-      '@agent-ready/core':
+      '@is-agent-ready/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:

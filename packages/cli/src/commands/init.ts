@@ -2,7 +2,7 @@ import { writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { pass, warn, info } from '../output'
 
-const CONFIG_CONTENT = `import { defineConfig } from '@agent-ready/core'
+const CONFIG_CONTENT = `import { defineConfig } from '@is-agent-ready/core'
 
 export default defineConfig({
   site: {
@@ -21,14 +21,14 @@ export default defineConfig({
 })
 `
 
-const MIDDLEWARE_CONTENT = `import { withAgentReady, AGENT_READY_MATCHER } from '@agent-ready/next'
+const MIDDLEWARE_CONTENT = `import { withAgentReady, AGENT_READY_MATCHER } from '@is-agent-ready/next'
 import agentConfig from './agent-ready.config'
 
 export default withAgentReady(agentConfig)
 export const config = { matcher: AGENT_READY_MATCHER }
 `
 
-const MIDDLEWARE_SNIPPET = `  import { withAgentReady, AGENT_READY_MATCHER } from '@agent-ready/next'
+const MIDDLEWARE_SNIPPET = `  import { withAgentReady, AGENT_READY_MATCHER } from '@is-agent-ready/next'
   import agentConfig from './agent-ready.config'
 
   export default withAgentReady(agentConfig)
