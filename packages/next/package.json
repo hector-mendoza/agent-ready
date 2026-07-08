@@ -1,6 +1,6 @@
 {
   "name": "@is-agent-ready/next",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -18,11 +18,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hec1702/agent-ready"
+    "url": "https://github.com/hector-mendoza/agent-ready"
   },
-  "homepage": "https://github.com/hec1702/agent-ready#readme",
+  "homepage": "https://github.com/hector-mendoza/agent-ready#readme",
   "bugs": {
-    "url": "https://github.com/hec1702/agent-ready/issues"
+    "url": "https://github.com/hector-mendoza/agent-ready/issues"
   },
   "exports": {
     ".": {

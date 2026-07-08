@@ -1,5 +1,13 @@
 # @is-agent-ready/next
 
+## 0.2.1
+
+### Patch Changes
+
+- Fix GitHub repository URL in package metadata (was pointing to the wrong account). Improve root README with clearer quick start and generated-files reference.
+- Updated dependencies
+  - @is-agent-ready/core@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes

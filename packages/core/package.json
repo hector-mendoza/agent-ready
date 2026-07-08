@@ -1,6 +1,6 @@
 {
   "name": "@is-agent-ready/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "license": "MIT",
   "author": "Hector Mendoza <hec1702@gmail.com>",
@@ -17,11 +17,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hec1702/agent-ready"
+    "url": "https://github.com/hector-mendoza/agent-ready"
   },
-  "homepage": "https://github.com/hec1702/agent-ready#readme",
+  "homepage": "https://github.com/hector-mendoza/agent-ready#readme",
   "bugs": {
-    "url": "https://github.com/hec1702/agent-ready/issues"
+    "url": "https://github.com/hector-mendoza/agent-ready/issues"
   },
   "exports": {
     ".": {
